@@ -1,0 +1,143 @@
+@use "../abstracts" as ab;
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+
+	@include ab.screen-50 {
+		flex-direction: row-reverse;
+		// width: min(95%, 100rem);
+		margin-left: auto;
+		gap: 1em;
+		margin-bottom: 9em;
+		margin-top: 2em;
+	}
+
+	@include ab.screen-84 {
+		gap: 1.5em;
+	}
+
+	@include ab.screen-120 {
+		width: min(95%, 110rem);
+		margin-inline: auto;
+	}
+
+	&-image {
+		@include ab.screen-62 {
+			flex: 50%;
+		}
+
+		img {
+			object-fit: cover;
+			height: 20rem;
+
+			@include ab.screen-40 {
+				height: auto;
+			}
+
+			@include ab.screen-50 {
+				height: 25rem;
+				border-radius: 0.6em 0 0 0.6em;
+			}
+
+			@include ab.screen-62 {
+				height: calc(25rem + 5vw);
+			}
+
+			@include ab.screen-117 {
+				height: 32rem;
+			}
+
+			@include ab.screen-120 {
+				border-radius: 0.6em;
+			}
+		}
+	}
+
+	&-text {
+		text-align: center;
+		// padding-inline: 1.6em;
+		width: min(90%, 100rem);
+		margin-inline: auto;
+
+		@include ab.screen-50 {
+			// padding-block: 2em 0;
+			padding-inline: 2em 0;
+			text-align: left;
+		}
+
+		@include ab.screen-62 {
+			flex: 35%;
+		}
+
+		@include ab.screen-84 {
+			padding-left: 4%;
+		}
+
+		@include ab.screen-120 {
+			padding-inline: 0.5em;
+		}
+
+		&__head {
+			font-size: 2rem;
+
+			@include ab.screen-40 {
+				width: 80%;
+				margin-inline: auto;
+			}
+
+			@include ab.screen-50 {
+				width: auto;
+				font-size: 1.8rem;
+			}
+
+			@include ab.screen-62 {
+				font-size: 2.2rem;
+			}
+
+			@include ab.screen-117 {
+				font-size: 3rem;
+			}
+		}
+
+		&__content {
+			margin-block: 1em;
+			text-align: justify;
+
+			@include ab.screen-40 {
+				width: 95%;
+				margin-inline: auto;
+			}
+
+			@include ab.screen-50 {
+				width: auto;
+				font-size: 0.9rem;
+			}
+
+			@include ab.screen-62 {
+				font-size: 1.1rem;
+			}
+
+			@include ab.screen-117 {
+				font-size: 1.2rem;
+			}
+		}
+
+		.link {
+			display: none;
+
+			@include ab.screen-50 {
+				display: inline;
+			}
+
+			@include ab.screen-62 {
+				display: none;
+			}
+
+			@include ab.screen-84 {
+				display: inline;
+			}
+		}
+	}
+}

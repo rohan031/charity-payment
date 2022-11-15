@@ -1,0 +1,42 @@
+@use "../abstracts" as ab;
+
+.wrapper {
+	&.loading {
+		overflow-y: hidden;
+		filter: blur(0.25rem);
+	}
+}
+
+.loader {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	z-index: 10;
+
+	&.gallery {
+		height: 70vh;
+		z-index: 0;
+	}
+
+	&-child {
+		border: 0.4rem solid hotpink;
+		border-radius: 50%;
+		border-top-color: transparent;
+		z-index: 20;
+		animation: spin 1s linear infinite;
+		width: 4rem;
+		height: 4rem;
+
+		@keyframes spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+	}
+}

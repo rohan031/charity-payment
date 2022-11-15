@@ -1,0 +1,41 @@
+@mixin screen-40 {
+    @media (min-width: 40em) {
+        @content;
+    }
+}
+
+@mixin screen-50 {
+    @media (min-width: 50em) {
+        @content;
+    }
+}
+
+@mixin screen-62 {
+    @media (min-width: 62em) {
+        @content;
+    }
+}
+
+@mixin screen-73 {
+    @media (min-width: 73em) {
+        @content;
+    }
+}
+
+@mixin screen-84 {
+    @media (min-width: 84em) {
+        @content;
+    }
+}
+
+@mixin screen-117 {
+    @media (min-width: 117em) {
+        @content;
+    }
+}
+
+@mixin screen-120 {
+    @media (min-width: 120.5em) {
+        @content;
+    }
+}

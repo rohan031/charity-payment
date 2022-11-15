@@ -1,0 +1,109 @@
+@use "../abstracts" as ab;
+
+.cards {
+    // outline: 2px solid coral;
+    width: min(90%, 110rem);
+    margin-inline: auto;
+    margin-block: 8em;
+
+    &-head {
+        text-align: center;
+        font-size: 1.8rem;
+
+        @include ab.screen-73 {
+            font-size: 2.2rem;
+        }
+    }
+
+    &-list {
+        // outline: 2px solid lightblue;
+        display: grid;
+        // flex-direction: column;
+        gap: 3em;
+        padding-block: 2em;
+
+        @include ab.screen-50 {
+            // flex-direction: row;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2em;
+
+            padding-block: 2.5em;
+        }
+
+        @include ab.screen-62 {
+            // grid-template-columns: repeat(3, 1fr);
+            gap: 0.8em;
+        }
+
+        @include ab.screen-73 {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2em;
+        }
+
+        &__item {
+            // outline: 2px solid lightpink;
+            padding-inline: 0.8em;
+            padding-block: 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            background-color: ab.$background-secondary;
+            border-radius: 0.5em;
+
+            transform: translateX(250px);
+            opacity: 0;
+
+            @include ab.screen-40 {
+                padding-inline: 2em;
+                padding-block: 2em 1em;
+            }
+
+            @include ab.screen-50 {
+                padding-inline: 0.8em;
+                transform: translateX(1000px)
+            }
+
+            @include ab.screen-62 {
+                padding-inline: 1.1em;
+            }
+
+            @include ab.screen-73 {
+                padding-inline: 1.8em;
+                padding-block: 1.8em;
+            }
+
+            &-image {
+                border-radius: 0.4em;
+
+                @include ab.screen-50 {
+                    object-fit: contain;
+                }
+            }
+
+            .image-height {
+
+                @include ab.screen-50 {
+                    width: 22rem;
+                    margin-inline: auto;
+                }
+            }
+
+            &-head {
+                font-size: 1.6rem;
+
+                @include ab.screen-50 {
+                    font-size: 1.4rem;
+                }
+
+                @include ab.screen-73 {
+                    font-size: 1.6rem;
+                }
+            }
+
+            &-text {
+                font-size: 0.9rem;
+                text-align: left;
+            }
+        }
+    }
+}

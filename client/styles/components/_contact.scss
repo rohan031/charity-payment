@@ -1,0 +1,152 @@
+@use "../abstracts" as ab;
+
+.details {
+	// outline: 2px solid coral;
+	width: min(90%, 75rem);
+	margin-inline: auto;
+
+	&-head {
+		text-align: center;
+		font-size: 2rem;
+
+		@include ab.screen-62 {
+			font-size: 2.4rem;
+		}
+	}
+
+	&-container {
+		margin-block: 1.5em;
+		padding-inline: 0.6em;
+		padding-block: 1.2em;
+		border-radius: 0.6em;
+
+		@include ab.screen-40 {
+			padding-inline: 1.5em;
+			padding-block: 1.8em;
+		}
+
+		@include ab.screen-84 {
+			padding-inline: 3em;
+			padding-block: 2.5em;
+		}
+
+		background-color: ab.$background-secondary;
+
+		display: flex;
+		gap: 2em;
+		flex-direction: column-reverse;
+
+		@include ab.screen-50 {
+			flex-direction: row;
+		}
+
+		@include ab.screen-73 {
+			justify-content: space-evenly;
+		}
+
+		.contact-link {
+			text-decoration-color: transparent;
+			color: ab.$text-logo;
+			transition: text-decoration-color 0.3s, color 0.3s;
+
+			&:hover {
+				color: darken(ab.$text-logo, 20%);
+				text-decoration-color: darken(ab.$text-logo, 20%);
+			}
+
+			&:active {
+				color: ab.$button-background;
+				text-decoration-color: ab.$button-background;
+			}
+
+			@include ab.screen-40 {
+				font-size: 1.1rem;
+			}
+		}
+
+		.address {
+			font-size: 1.1rem;
+			cursor: default;
+
+			@include ab.screen-40 {
+				font-size: 1.3rem;
+			}
+		}
+
+		&__left {
+			display: grid;
+			gap: 1em;
+			@include ab.screen-73 {
+				width: 55%;
+			}
+			&-item {
+				display: flex;
+				align-items: center;
+				gap: 0.8em;
+
+				// margin-bottom: 1em;
+
+				@include ab.screen-50 {
+					align-items: flex-start;
+				}
+
+				i {
+					font-size: 1.4rem;
+				}
+
+				iframe {
+					margin-top: 0.6em;
+					display: block;
+					border-radius: 0.6em;
+					height: 18rem;
+					width: 100%;
+
+					@include ab.screen-50 {
+						width: 100%;
+						height: calc(9.5rem + 2vw);
+					}
+
+					@include ab.screen-62 {
+						width: 90%;
+						height: calc(11rem + 2vw);
+					}
+
+					@include ab.screen-73 {
+						width: 84%;
+						height: 14rem;
+					}
+
+					@include ab.screen-84 {
+						width: 92%;
+					}
+				}
+			}
+		}
+
+		&__right {
+			&-item {
+				display: flex;
+				align-items: center;
+				gap: 0.8em;
+
+				img {
+					margin-inline: auto;
+
+					@include ab.screen-40 {
+						width: 25rem;
+					}
+
+					@include ab.screen-50 {
+						width: 20rem;
+						height: 18rem;
+						object-fit: cover;
+					}
+				}
+
+				i {
+					font-size: 1.4rem;
+				}
+			}
+		}
+	}
+}

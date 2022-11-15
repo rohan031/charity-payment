@@ -1,0 +1,38 @@
+@use "../abstracts" as ab;
+
+.payment {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 50vh;
+	flex-direction: column;
+	gap: 3em;
+	width: min(90%, 80rem);
+	margin-inline: auto;
+	overflow: hidden;
+
+	@include ab.screen-40 {
+		flex-direction: row;
+	}
+
+	img {
+		width: clamp(10rem, 100vw, 18rem);
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	.success {
+		color: ab.$success;
+	}
+
+	.failure {
+		color: ab.$error;
+	}
+
+	& + p {
+		text-align: center;
+		margin-top: 2em;
+	}
+}

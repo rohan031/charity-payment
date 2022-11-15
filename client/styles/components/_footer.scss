@@ -1,0 +1,85 @@
+@use "../abstracts" as ab;
+
+.footer {
+	margin-top: 9em;
+	background-color: #25242b;
+
+	&-child {
+		width: min(111rem, 90%);
+		margin-inline: auto;
+		padding-block: 4em;
+
+		display: flex;
+		flex-direction: column;
+		gap: 3em;
+
+		@include ab.screen-50 {
+			flex-direction: row;
+			gap: 1em;
+			align-items: flex-start;
+			justify-content: center;
+		}
+
+		@include ab.screen-62 {
+			gap: 3em;
+		}
+
+		&__item {
+			text-align: center;
+			display: grid;
+			gap: 0.8em;
+
+			@include ab.screen-50 {
+				text-align: left;
+				// gap: 0.4em;
+			}
+
+			&.left {
+				@include ab.screen-50 {
+					width: 70%;
+				}
+
+				@include ab.screen-62 {
+					width: 60%;
+				}
+			}
+
+			&-head {
+				text-decoration: underline;
+				font-size: 2rem;
+				font-weight: 600;
+				color: white;
+				user-select: none;
+			}
+
+			&-child {
+				color: ab.$text-footer;
+				font-size: 1rem;
+
+				@include ab.screen-50 {
+				}
+
+				ul {
+					padding: 0;
+					margin: 0;
+
+					list-style-type: none;
+					display: grid;
+					gap: 0.2em;
+
+					li {
+						a {
+							text-decoration-color: transparent;
+							color: ab.$text-footer;
+							transition: text-decoration-color 0.3s;
+
+							&:hover {
+								text-decoration-color: ab.$text-footer;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

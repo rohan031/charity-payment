@@ -1,0 +1,228 @@
+@use "../abstracts" as ab;
+
+.donation {
+	margin-block: 4em;
+
+	&-head {
+		text-align: center;
+		margin-block: 1.5em;
+		font-size: 1.8rem;
+		user-select: none;
+
+		@include ab.screen-40 {
+			font-size: 2.2rem;
+		}
+	}
+
+	&-wrapper {
+		width: min(90%, 60rem);
+		margin-inline: auto;
+
+		background-color: ab.$background-secondary;
+		padding-block: 2em;
+		padding-inline: 0.8em;
+		border-radius: 0.5em;
+
+		@include ab.screen-40 {
+			padding-inline: 1.5em;
+		}
+	}
+
+	.input-error {
+		color: ab.$error;
+		padding-inline: 0.3em;
+		padding-top: 0.4em;
+	}
+
+	&-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+
+		label {
+			font-size: 1.2rem;
+			font-weight: 500;
+			cursor: pointer;
+			text-decoration: underline transparent;
+			max-width: 5rem;
+			transition: color 0.3s, text-decoration-color 0.3s;
+
+			&:hover {
+				color: ab.$text-logo;
+				text-decoration-color: ab.$text-logo;
+			}
+		}
+
+		@include ab.screen-40 {
+			gap: 1.4em;
+		}
+
+		@include ab.screen-50 {
+			gap: 1.8em;
+		}
+
+		&__child {
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+
+			@include ab.screen-40 {
+				&.form-name {
+					flex-direction: row;
+					align-items: flex-start;
+
+					.donation-form__child-select {
+						flex-direction: column;
+						gap: 0.2em;
+					}
+
+					.donation-form__child-input {
+						width: 100%;
+					}
+				}
+
+				&.form-location {
+					.form-location__select {
+						flex-direction: row;
+
+						.donation-form__child-select {
+							flex-direction: column;
+							gap: 0.2em;
+							width: 100%;
+						}
+					}
+				}
+			}
+
+			@include ab.screen-50 {
+				&.form-location {
+					flex-direction: row;
+				}
+
+				&.form-personal {
+					flex-direction: row;
+				}
+			}
+
+			@include ab.screen-62 {
+				&.form-contact {
+					flex-direction: row;
+				}
+			}
+
+			&-input {
+				@include ab.screen-62 {
+					&.form-address {
+						flex-direction: column;
+						display: flex;
+					}
+				}
+
+				input {
+					width: 100%;
+
+					border-radius: 0.4em;
+					border: none;
+
+					padding-inline: 0.6em;
+					font-size: 1.1rem;
+					padding-block: 0.3em;
+				}
+
+				textarea {
+					width: 100%;
+					border-radius: 0.4em;
+					border: none;
+					padding-inline: 0.5em;
+					padding-block: 0.2em;
+					resize: vertical;
+					min-height: 6rem;
+					max-height: 10rem;
+
+					@include ab.screen-50 {
+						min-height: 8em;
+						max-height: 12rem;
+					}
+
+					@include ab.screen-62 {
+						width: 65%;
+					}
+				}
+			}
+
+			&-select {
+				display: flex;
+				gap: 0.5em;
+
+				select {
+					width: 100%;
+					border-radius: 0.4em;
+					border: none;
+					padding-inline: 0.3em;
+					padding-block: 0.2em;
+					font-size: 1.1rem;
+				}
+
+				#title {
+					width: auto;
+				}
+			}
+
+			&-terms {
+				label {
+					font-size: 1rem;
+				}
+
+				a {
+					color: ab.$text-logo;
+				}
+			}
+
+			&-button {
+				.proceed {
+					width: 100%;
+					font-size: 1.1rem;
+					font-weight: 500;
+					color: ab.$text-secondary;
+					background-color: #5fd068;
+					text-decoration: underline;
+					text-decoration-color: transparent;
+
+					transition: background-color 0.3s, text-decoration-color 0.3s;
+
+					@include ab.screen-40 {
+						padding-inline: 4em;
+					}
+
+					&:hover {
+						background-color: lighten(#5fd068, 5%);
+						text-decoration-color: ab.$text-secondary;
+					}
+
+					&:active {
+						background-color: darken(#5fd068, 5%);
+						text-decoration-color: ab.$text-secondary;
+					}
+
+					@include ab.screen-40 {
+						width: auto;
+					}
+				}
+			}
+
+			&.form-terms {
+				margin-top: 1em;
+			}
+
+			&.form-location {
+				gap: 1.2em;
+			}
+
+			.form-location__select {
+				display: flex;
+				flex-direction: column;
+				gap: 1em;
+			}
+		}
+	}
+}
