@@ -1,6 +1,18 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
+const mongoose = require("mongoose");
+
+mongoose.set("strictQuery", false);
+const connectDB = async () => {
+	try {
+		const conn = await mongoose.connect(process.env.DB_URI);
+		console.log(`MongoDB Connected: ${conn.connection.host}`);
+	} catch (error) {
+		console.log(error);
+		process.exit(1);
+	}
+};
 
 require("dotenv").config();
 
@@ -14,10 +26,13 @@ const charity = require("./routes/charity");
 app.use("/", charity);
 
 // run express server
-app.listen(PORT, (err) => {
-	if (err) {
-		console.log("Error starting server, ", err);
-	} else {
-		console.log("Server is running on PORT: ", PORT);
-	}
+//Connect to the database before listening
+connectDB().then(() => {
+	app.listen(PORT, (error) => {
+		if (error) {
+			console.log("Error starting server, ", error);
+		} else {
+			console.log("Server is listening on Port: ", PORT);
+		}
+	});
 });

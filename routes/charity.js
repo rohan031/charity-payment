@@ -9,6 +9,7 @@ const {
 	donation,
 	paynow,
 	status,
+	deleteInvalid,
 } = require("../controllers/charity");
 
 route.get("/", home);
@@ -24,5 +25,7 @@ route.get("/donation", donation);
 route.post("/paynow", paynow);
 
 route.post("/status", status);
+
+route.get("/deleteInvalid", deleteInvalid);
 
 module.exports = route;

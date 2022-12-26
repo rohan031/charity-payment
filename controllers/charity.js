@@ -3,6 +3,9 @@ const PaytmChecksum = require("paytmchecksum");
 const crypto = require("crypto");
 const https = require("https");
 
+// donators Schema
+const Donator = require("../database/donatorsSchema");
+
 const md5 = (text) => {
 	return crypto.createHash("md5").update(text, "utf-8").digest("hex");
 };
@@ -27,7 +30,7 @@ const donation = (req, res) => {
 	res.sendFile(path.resolve(__dirname + "/../client/donation.html"));
 };
 
-const paynow = (req, res) => {
+const paynow = async (req, res) => {
 	const {
 		name,
 		email,
@@ -60,6 +63,28 @@ const paynow = (req, res) => {
 	var paytmParams = {};
 
 	const orderId = md5(`${panNumber + Date.now()}`);
+
+	const donatorDetails = {
+		name,
+		email,
+		phoneNumber,
+		state,
+		district,
+		pinCode,
+		address,
+		amount,
+		panNumber,
+		orderId,
+		isValid: false,
+	};
+
+	const newDonator = new Donator(donatorDetails);
+
+	await newDonator.save((err, result) => {
+		if (err) {
+			console.log(err);
+		}
+	});
 
 	paytmParams.body = {
 		requestType: "Payment",
@@ -105,7 +130,6 @@ const paynow = (req, res) => {
 			});
 
 			post_res.on("end", function () {
-				console.log("Response: ", response);
 				return res.json({
 					response,
 					orderId: paytmParams.body.orderId,
@@ -118,15 +142,34 @@ const paynow = (req, res) => {
 	});
 };
 
-const status = (req, res) => {
-	const { STATUS: status } = req.body;
-	console.log(req.body);
+const status = async (req, res) => {
+	const { STATUS: status, ORDERID: orderId } = req.body;
+
+	const donator = await Donator.findOne({ orderId });
 
 	if (status === "TXN_SUCCESS") {
+		if (donator) {
+			donator.isValid = true;
+			await donator.save();
+		}
+
 		return res.sendFile(path.resolve(__dirname + "/../client/success.html"));
 	}
 
+	if (donator) {
+		await Donator.deleteOne({ _id: donator._id });
+	}
+
 	res.sendFile(path.resolve(__dirname + "/../client/failure.html"));
+};
+
+const deleteInvalid = async (req, res) => {
+	await Donator.deleteMany({ isValid: false });
+
+	return res.status(200).json({
+		success: true,
+		json: "Successfully removed invalid entries",
+	});
 };
 
 module.exports = {
@@ -137,4 +180,5 @@ module.exports = {
 	donation,
 	paynow,
 	status,
+	deleteInvalid,
 };
