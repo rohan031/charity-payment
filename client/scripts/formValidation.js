@@ -371,6 +371,8 @@ proceedReview.addEventListener("click", () => {
 						window.Paytm.CheckoutJS.invoke();
 					})
 					.catch(function onError(error) {
+						loader.style.display = "none";
+						wrapper.classList.remove("loading");
 						console.log("error => ", error);
 					});
 			}
